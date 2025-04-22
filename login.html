@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Tasty Bites</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+    }
+
+    .container {
+      width: 350px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons span {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .active-tab {
+      background-color: #ff6b6b;
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #e74c3c;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="tab-buttons">
+    <span id="loginTab" class="active-tab" onclick="switchForm('login')">Login</span>
+    <span id="registerTab" onclick="switchForm('register')">Register</span>
+  </div>
+
+  <form id="loginForm" class="active" onsubmit="handleLogin(event)">
+    <h2>Welcome Back!</h2>
+    <input type="text" placeholder="Username" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+    <div class="note">Hungry? Let’s get you some food 🍟</div>
+  </form>
+
+  <form id="registerForm">
+    <h2>Create Account</h2>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit" onclick="switchForm('login')">Register</button>
+    <div class="note">Join us and order your favorites 🍕</div>
+  </form>
+</div>
+
+<script>
+  function switchForm(formType) {
+    document.getElementById('loginForm').classList.remove('active');
+    document.getElementById('registerForm').classList.remove('active');
+    document.getElementById('loginTab').classList.remove('active-tab');
+    document.getElementById('registerTab').classList.remove('active-tab');
+
+    if (formType === 'login') {
+      document.getElementById('loginForm').classList.add('active');
+      document.getElementById('loginTab').classList.add('active-tab');
+    } else {
+      document.getElementById('registerForm').classList.add('active');
+      document.getElementById('registerTab').classList.add('active-tab');
+    }
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    // Simulate login success
+    localStorage.setItem('loggedIn', true);
+    window.location.href = "index.html"; // Redirect to your main page
+  }
+</script>
+
+</body>
+</html>
